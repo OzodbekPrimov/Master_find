@@ -19,7 +19,6 @@ router.register(r"jobs", JobViewset)
 
 urlpatterns = [
     path('', include(router.urls)),
-    path('review/create/', ReviewListCreateView.as_view()),
-    path('review/list/', ReviewListCreateView.as_view()),
+    path('review/', ReviewListCreateView.as_view()),
 
 ]

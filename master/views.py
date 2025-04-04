@@ -20,15 +20,6 @@ class ReviewListCreateView(generics.ListCreateAPIView):
     queryset = Review.objects.all()
     # permission_classes = [IsAuthenticated]  # Faqat autentifikatsiyadan o'tgan foydalanuvchilar
 
-    def get_queryset(self):
-        # Faqat muayyan usta uchun sharhlarni qaytarish
-        usta_id = self.kwargs['master_id']
-        return Review.objects.filter(master_id=usta_id)
-
-    def perform_create(self, serializer):
-        # Sharh qoldirishda foydalanuvchi va usta avtomatik qo'shiladi
-        usta_id = self.kwargs['master_id']
-        serializer.save(user=self.request.user, usta_id=usta_id)
 
 
 class JobViewset(viewsets.ModelViewSet):
