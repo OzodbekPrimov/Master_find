@@ -29,7 +29,9 @@ SECRET_KEY = os.environ.get('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['nlp.iftor.uz', 'www.nlp.iftor.uz', '127.0.0.1']
+ALLOWED_HOSTS = ['nlp.iftor.uz', 'www.nlp.iftor.uz', '127.0.0.1', 'localhost']
+
+# ALLOWED_HOSTS = ['*']
 
 CSRF_TRUSTED_ORIGINS = ['https://nlp.iftor.uz', 'https://www.nlp.iftor.uz']
 # Application definition
@@ -144,7 +146,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.2/howto/static-files/
 
 STATIC_URL = 'static/'
-
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 
@@ -193,6 +195,6 @@ EMAIL_HOST = "smtp.gmail.com"
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 EMAIL_HOST_USER = "oprimov13@gmail.com"
-EMAIL_HOST_PASSWORD = "gppi nplc rvga ekcc"
+EMAIL_HOST_PASSWORD = os.environ.get("EMAIL_HOST_PASSWORD")
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 

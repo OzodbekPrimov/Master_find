@@ -9,5 +9,3 @@ class CustomUserAdmin(admin.ModelAdmin):
     list_filter = ('role',)
     ordering = ('id',)
 
-
-
