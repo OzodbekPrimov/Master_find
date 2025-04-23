@@ -2,6 +2,7 @@
 from rest_framework import viewsets, generics
 from rest_framework.response import Response
 
+
 from .models import Review, Master, Job, Message
 from .serilaizers import MasterSerializer, ReviewSerializer, JobSerializer, MessageSerializer
 from rest_framework.pagination import PageNumberPagination
@@ -50,8 +51,6 @@ class JobViewset(viewsets.ModelViewSet):
     )
     def list(self, request, *args, **kwargs):
         return super().list(request, *args, **kwargs)
-
-
 
 
 class MasterViewset(viewsets.ModelViewSet):
@@ -140,7 +139,10 @@ class ConversationView(generics.ListAPIView):
     serializer_class = MessageSerializer
 
     def get_queryset(self):
-        user_id = self.kwargs['user_id']
-        return Message.objects.filter(
+        try:
+            user_id = self.kwargs['user_id']
+            return Message.objects.filter(
             Q(sender=self.request.user, receiver__id=user_id) | Q(sender__id=user_id, receiver=self.request.user)
         ).order_by('created_at')
+        except Exception as e:
+            return Response({"error": str(e)}, status=400)

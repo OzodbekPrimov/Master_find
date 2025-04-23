@@ -27,7 +27,6 @@ class Master(models.Model):
     address = models.CharField(max_length=255, blank=True, null=True)
     experience_years = models.PositiveIntegerField(default=0, help_text="Ish tajribasi yillarda")
     bio = models.TextField(blank=True, null=True)
-    # rating = models.PositiveIntegerField(default=0)
     is_approved = models.BooleanField(default=False)
 
     def __str__(self):

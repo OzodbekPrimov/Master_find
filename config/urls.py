@@ -46,6 +46,7 @@ schema_view = get_schema_view(
     public=True,
     permission_classes=[permissions.AllowAny],
     generator_class=JWTSchemaGenerator
+    # url='https://nlp.iftor.uz',  # HTTPS manzilini belgilash
 )
 
 

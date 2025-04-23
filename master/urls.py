@@ -14,5 +14,5 @@ urlpatterns = [
     path('', include(router.urls)),
     path('review/', ReviewListCreateView.as_view()),
     path('message/', MessageListCreateView.as_view()),
-    path("conversation/",ConversationView.as_view() )
+    path("conversation/<int:user_id>/",ConversationView.as_view())
 ]

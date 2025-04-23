@@ -1,6 +1,6 @@
 from django_filters import rest_framework as django_filter
 
-from .models import Review, Master, Job
+from .models import Master, Job
 
 class MasterFilter(django_filter.FilterSet):
 

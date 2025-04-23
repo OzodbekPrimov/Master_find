@@ -1,5 +1,4 @@
 from rest_framework import serializers
-from urllib3 import request
 
 from .models import Master, Review, Job, Message
 
@@ -24,7 +23,7 @@ class JobSerializer(serializers.ModelSerializer):
 
 
 class MasterSerializer(serializers.ModelSerializer):
-    avg_rating = serializers.IntegerField(read_only=True, required=False)
+    avg_rating = serializers.FloatField(read_only=True, required=False)
 
     class Meta:
         model = Master
@@ -35,19 +34,16 @@ class MasterSerializer(serializers.ModelSerializer):
 
 
 class MessageSerializer(serializers.ModelSerializer):
-    # sender = serializers.CharField(source="sender.username", read_only=True)
-    # receiver = serializers.CharField(source="receiver.username", read_only=True)
 
     class Meta:
         model = Message
-        fields = ['id','receiver', 'content']
+        fields = ['id','receiver', 'content', 'sender']
+        read_only_fields = ['sender',]
 
     def create(self, validated_data):
         # xabar yuboruvchini joriy foydalanuvchi sifatida avtomatik olish
         validated_data['sender'] = self.context['request'].user
         return Message.objects.create(**validated_data)
-
-
 
 
 
